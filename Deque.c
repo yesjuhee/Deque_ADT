@@ -8,38 +8,38 @@ void DequeInit(Deque* pdeq)
 	pdeq->head = NULL; //front
 	pdeq->tail = NULL; //rear
 }
-int DQIsEmpty(Deque* pdeq) //µ¦ÀÌ ºñ¾úÀ¸¸é 1À» ¹İÈ¯
+int DQIsEmpty(Deque* pdeq) //ë±ì´ ë¹„ì—ˆìœ¼ë©´ 1ì„ ë°˜í™˜
 {
 	if (pdeq->head == NULL)	return TRUE;
 	else                    return FALSE;
 }
 
-void DQAddFirst(Deque* pdeq, Data data)				//µ¦ÀÇ ¸Ó¸®¿¡ µ¥ÀÌÅÍ Ãß°¡
+void DQAddFirst(Deque* pdeq, Data data)				//ë±ì˜ ë¨¸ë¦¬ì— ë°ì´í„° ì¶”ê°€
 {			
-	Node* newNode = (Node*)malloc(sizeof(Node));	//Ãß°¡ÇÒ ³ëµå
+	Node* newNode = (Node*)malloc(sizeof(Node));	//ì¶”ê°€í•  ë…¸ë“œ
 	newNode->data = data;
-	newNode->next = pdeq->head;						//newNodeÀÇ rlink ¸Ó¸®¿¡ ¿¬°á
-	newNode->prev = NULL;							//newNodeÀÇ llink´Â NULL·Î ÃÊ±âÈ­
+	newNode->next = pdeq->head;						//newNodeì˜ rlink ë¨¸ë¦¬ì— ì—°ê²°
+	newNode->prev = NULL;							//newNodeì˜ llinkëŠ” NULLë¡œ ì´ˆê¸°í™”
 
-	if (DQIsEmpty(pdeq))	pdeq->tail = newNode;	    //µ¦ÀÌ ºñ¾îÀÖ´Ù¸é tailÀÌ newNode °¡¸®Å´
-	else					pdeq->head->prev = newNode;	//¾Æ´Ï¸é Ã¹¹øÂ° ³ëµå rlink°¡ newNode °¡¸®Å´
+	if (DQIsEmpty(pdeq))	pdeq->tail = newNode;	    //ë±ì´ ë¹„ì–´ìˆë‹¤ë©´ tailì´ newNode ê°€ë¦¬í‚´
+	else					pdeq->head->prev = newNode;	//ì•„ë‹ˆë©´ ì²«ë²ˆì§¸ ë…¸ë“œ rlinkê°€ newNode ê°€ë¦¬í‚´
 
-	pdeq->head = newNode;							//µ¦ÀÇ head°¡ newNode °¡¸®Å´
+	pdeq->head = newNode;							//ë±ì˜ headê°€ newNode ê°€ë¦¬í‚´
 }	
-void DQAddLast(Deque* pdeq, Data data) 		//µ¦ÀÇ ²¿¸®¿¡ µ¥ÀÌÅÍ Ãß°¡
+void DQAddLast(Deque* pdeq, Data data) 		//ë±ì˜ ê¼¬ë¦¬ì— ë°ì´í„° ì¶”ê°€
 {
-	Node* newNode = (Node*)malloc(sizeof(Node));	//Ãß°¡ÇÒ ³ëµå
+	Node* newNode = (Node*)malloc(sizeof(Node));	//ì¶”ê°€í•  ë…¸ë“œ
 	newNode->data = data;
-	newNode->prev = pdeq->tail;						//newNodeÀÇ llink ²¿¸®¿¡ ¿¬°á
-	newNode->next = NULL;							//newNodeÀÇ rlink NULL·Î ÃÊ±âÈ­
+	newNode->prev = pdeq->tail;						//newNodeì˜ llink ê¼¬ë¦¬ì— ì—°ê²°
+	newNode->next = NULL;							//newNodeì˜ rlink NULLë¡œ ì´ˆê¸°í™”
 
-	if (DQIsEmpty(pdeq))	pdeq->head = newNode;		//µ¦ÀÌ ºñ¾îÀÖ´Ù¸é head°¡ newNode °¡¸®Å´
-	else					pdeq->tail->next = newNode; //¾Æ´Ï¸é ¸¶Áö¸· ³ëµå¿¡ llink°¡ newNode °¡¸®Å´
+	if (DQIsEmpty(pdeq))	pdeq->head = newNode;		//ë±ì´ ë¹„ì–´ìˆë‹¤ë©´ headê°€ newNode ê°€ë¦¬í‚´
+	else					pdeq->tail->next = newNode; //ì•„ë‹ˆë©´ ë§ˆì§€ë§‰ ë…¸ë“œì— llinkê°€ newNode ê°€ë¦¬í‚´
 
-	pdeq->tail = newNode;							//µ¦ÀÇ tailÀÌ newNode °¡¸®Å´
-};
+	pdeq->tail = newNode;							//ë±ì˜ tailì´ newNode ê°€ë¦¬í‚´
+}
 
-Data DQRemoveFirst(Deque* pdeq)			//µ¦ÀÇ ¸Ó¸®¿¡¼­ µ¥ÀÌÅÍ »èÁ¦
+Data DQRemoveFirst(Deque* pdeq)			//ë±ì˜ ë¨¸ë¦¬ì—ì„œ ë°ì´í„° ì‚­ì œ
 {
 	if (DQIsEmpty(pdeq))				//underflow error message
 	{
@@ -47,20 +47,20 @@ Data DQRemoveFirst(Deque* pdeq)			//µ¦ÀÇ ¸Ó¸®¿¡¼­ µ¥ÀÌÅÍ »èÁ¦
 		exit(-1);
 	};
 
-	Node* rnode = pdeq->head;			//Áö¿öÁú ³ëµå(¸Ç¾Õ)¸¦ °¡¸®Å³ Æ÷ÀÎÅÍ
-	Data rdata;							//µ¥ÀÌÅÍ ¹İÈ¯À» À§ÇÑ º¯¼ö
+	Node* rnode = pdeq->head;			//ì§€ì›Œì§ˆ ë…¸ë“œ(ë§¨ì•)ë¥¼ ê°€ë¦¬í‚¬ í¬ì¸í„°
+	Data rdata;							//ë°ì´í„° ë°˜í™˜ì„ ìœ„í•œ ë³€ìˆ˜
 	
 	rdata = pdeq->head->data;
 
-	pdeq->head = pdeq->head->next;		//head À§Ä¡¸¦ ´ÙÀ½ ³ëµå·Î º¯°æ
-	free(rnode);						//¸Ş¸ğ¸® »èÁ¦
+	pdeq->head = pdeq->head->next;		//head ìœ„ì¹˜ë¥¼ ë‹¤ìŒ ë…¸ë“œë¡œ ë³€ê²½
+	free(rnode);						//ë©”ëª¨ë¦¬ ì‚­ì œ
 
-	if (pdeq->head == NULL) pdeq->tail = NULL;			//µ¦ÀÌ ºñ¾ú´Ù¸é tailÀÌ NULLÀ» °¡¸®Å°µµ·Ï Á¶Á¤
-	else					pdeq->head->prev = NULL;	//¾Æ´Ï¶ó¸é »èÁ¦µÈ ³ëµå ´ÙÀ½ ³ëµåÀÇ llink NULL·Î ÃÊ±âÈ­
+	if (pdeq->head == NULL) pdeq->tail = NULL;			//ë±ì´ ë¹„ì—ˆë‹¤ë©´ tailì´ NULLì„ ê°€ë¦¬í‚¤ë„ë¡ ì¡°ì •
+	else					pdeq->head->prev = NULL;	//ì•„ë‹ˆë¼ë©´ ì‚­ì œëœ ë…¸ë“œ ë‹¤ìŒ ë…¸ë“œì˜ llink NULLë¡œ ì´ˆê¸°í™”
 
 	return rdata;
-};
-Data DQRemoveLast(Deque* pdeq)				//µ¦ÀÇ ²¿¸®¿¡¼­ µ¥ÀÌÅÍ »èÁ¦
+}
+Data DQRemoveLast(Deque* pdeq)				//ë±ì˜ ê¼¬ë¦¬ì—ì„œ ë°ì´í„° ì‚­ì œ
 {
 	if (DQIsEmpty(pdeq))					//underflow error message
 	{
@@ -68,21 +68,21 @@ Data DQRemoveLast(Deque* pdeq)				//µ¦ÀÇ ²¿¸®¿¡¼­ µ¥ÀÌÅÍ »èÁ¦
 		exit(-1);
 	}; 
 
-	Node* rnode = pdeq->tail;				//Áö¿öÁú ³ëµå(¸ÇµÚ)¸¦ °¡¸®Å³ Æ÷ÀÎÅÍ
-	Data rdata;								//µ¥ÀÌÅÍ ¹İÈ¯À» À§ÇÑ º¯¼ö
+	Node* rnode = pdeq->tail;				//ì§€ì›Œì§ˆ ë…¸ë“œ(ë§¨ë’¤)ë¥¼ ê°€ë¦¬í‚¬ í¬ì¸í„°
+	Data rdata;								//ë°ì´í„° ë°˜í™˜ì„ ìœ„í•œ ë³€ìˆ˜
 	
 	rdata = pdeq->tail->data;				
 	
-	pdeq->tail = pdeq->tail->prev;			//tailÀÇ À§Ä¡¸¦ ÀÌÀü ³ëµå·Î º¯°æ
-	free(rnode);							//¸Ş¸ğ¸® »èÁ¦
+	pdeq->tail = pdeq->tail->prev;			//tailì˜ ìœ„ì¹˜ë¥¼ ì´ì „ ë…¸ë“œë¡œ ë³€ê²½
+	free(rnode);							//ë©”ëª¨ë¦¬ ì‚­ì œ
 
-	if (pdeq->tail == NULL)	pdeq->head = NULL;			//µ¦ÀÌ ºñ¾ú´Ù¸é head°¡ NULLÀ» °¡¸®Å°µµ·Ï Á¶Á¤
-	else					pdeq->tail->next = NULL;	//¾Æ´Ï¶ó¸é »èÁ¦µÈ ³ëµå ÀÌÀü ³ëµåÀÇ rlink¸¦ NULL·Î ÃÊ±âÈ­
+	if (pdeq->tail == NULL)	pdeq->head = NULL;			//ë±ì´ ë¹„ì—ˆë‹¤ë©´ headê°€ NULLì„ ê°€ë¦¬í‚¤ë„ë¡ ì¡°ì •
+	else					pdeq->tail->next = NULL;	//ì•„ë‹ˆë¼ë©´ ì‚­ì œëœ ë…¸ë“œ ì´ì „ ë…¸ë“œì˜ rlinkë¥¼ NULLë¡œ ì´ˆê¸°í™”
 
 	return rdata;
-};
+}
 
-Data DQGetFirst(Deque* pdeq)				//µ¦ÀÇ ¸Ó¸®¿¡¼­ µ¥ÀÌÅÍ ÂüÁ¶
+Data DQGetFirst(Deque* pdeq)				//ë±ì˜ ë¨¸ë¦¬ì—ì„œ ë°ì´í„° ì°¸ì¡°
 {
 	if (DQIsEmpty(pdeq))					//underflow error message
 	{
@@ -91,8 +91,8 @@ Data DQGetFirst(Deque* pdeq)				//µ¦ÀÇ ¸Ó¸®¿¡¼­ µ¥ÀÌÅÍ ÂüÁ¶
 	};
 	
 	return pdeq->head->data;
-};
-Data DQGetLast(Deque* pdeq)				//µ¦ÀÇ ²¿¸®¿¡¼­ µ¥ÀÌÅÍ ÂüÁ¶
+}
+Data DQGetLast(Deque* pdeq)				//ë±ì˜ ê¼¬ë¦¬ì—ì„œ ë°ì´í„° ì°¸ì¡°
 {
 	if (DQIsEmpty(pdeq))					//underflow error message
 	{
